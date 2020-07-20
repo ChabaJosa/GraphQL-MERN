@@ -2,15 +2,66 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { UserInputError } = require("apollo-server");
 
-const { validateUserInput } = require("../../utilities/validators");
+const { validateUserInput, validateLogInInput} = require("../../utilities/validators");
 const { SECRET_KEY } = require("../../config");
 
 const User = require("../../models/User");
 
+function generateToken(user){
+    return jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+        },
+        SECRET_KEY, 
+        // The Secret Key is so that only our server can decode the token
+        { expiresIn: "1h" }
+      );
+}
+
+// Exports Below
 module.exports = {
   Mutation: {
 
     // Here is where we: Validate user info, make sure user doesn't exist, create hash pwd and an auth token
+    // For: Existing User
+    async login(_, {username, password}){
+
+        const { valid, errors } = validateLogInInput(
+            username,
+            password,
+          );
+
+        if(!valid){
+            throw new UserInputError("Errors", {errors})
+        }
+          
+        const user = await User.findOne({username})
+
+        if(!user){
+            errors.general = "User not found"
+            throw new UserInputError("User not found", {errors})
+        }
+
+        const match = await bcrypt.compare(password, user.password)
+
+        if (!match) {
+            errors.general = "Wrong Credentials"
+            throw new UserInputError("Wrong Credentials", {errors})
+        }
+        
+        const token = generateToken(user)
+
+        return {
+            ...user._doc, // Where our doc is stored
+            id: user._id,
+            token,
+          };
+    },
+
+    // Here is where we: Validate user info, make sure user doesn't exist, create hash pwd and an auth token
+    // For: New User
     async register(
       _,
       { registerInput: { username, email, password, confirmPassword } }
@@ -62,15 +113,7 @@ module.exports = {
       const res = await newUser.save();
 
       // uses jsonwebtoken to generate a token to give to the user
-      const token = jwt.sign(
-        {
-          id: res.id,
-          email: res.email,
-          username: res.username,
-        },
-        SECRET_KEY,
-        { expiresIn: "1h" }
-      ); // The Secret Key is so that only our server can decode the token
+      const token = generateToken(res) 
 
       return {
         ...res._doc, // Where our doc is stored
