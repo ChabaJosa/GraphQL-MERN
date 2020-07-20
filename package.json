@@ -1,0 +1,16 @@
+{
+  "name": "authgraphql",
+  "version": "1.0.0",
+  "description": "First GraphQL App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chaba Josa",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.16.0",
+    "graphql": "^15.3.0",
+    "mongoose": "^5.9.25"
+  }
+}
