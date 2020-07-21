@@ -1,4 +1,7 @@
+  
 const Post = require('../../models/Post')
+// const checkAuth = require('../../utils/checkAuth')
+// const user = checkAuth(context)
 
 module.exports = {
     Query: {

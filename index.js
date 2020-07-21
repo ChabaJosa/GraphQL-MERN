@@ -10,6 +10,7 @@ const connectDB = require("./db");
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({req}) => ({req})
 });
 
 connectDB()

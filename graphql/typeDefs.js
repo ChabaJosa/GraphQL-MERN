@@ -35,4 +35,3 @@ module.exports = gql`
 // The user can still opt out from not getting this.
 // Mutation is for Updating, Query for GET like requests
 // We used the RegisterInput input as the value for the mutation
-
