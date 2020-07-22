@@ -10,3 +10,12 @@
 .posts-div{
   margin-top: 3rem;
 }
+
+.blur{
+  background-color: black;
+  opacity: 0.8
+}
+
+.blur-background{
+  background-color: black;
+}

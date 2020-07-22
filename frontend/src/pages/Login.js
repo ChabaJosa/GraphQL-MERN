@@ -62,7 +62,7 @@ function Login(props) {
             value={values.password}
             onChange={onChange}
           />
-          <Button type="submit" primary>
+          <Button type="submit" className="green">
             Login
           </Button>
         </Form>

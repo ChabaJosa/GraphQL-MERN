@@ -47,7 +47,7 @@ function Register(props) {
           noValidate
           className={loading ? "loading" : ""}
         >
-          <h1>Sign Up</h1>
+          <h1>Register</h1>
           <Form.Input
             label="Username"
             placeholder="Username..."
@@ -84,7 +84,7 @@ function Register(props) {
             value={values.confirmPassword}
             onChange={onChange}
           />
-          <Button type="submit" primary>
+          <Button type="submit" className="green">
             Register
           </Button>
         </Form>

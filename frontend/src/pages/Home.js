@@ -4,6 +4,8 @@ import gql from "graphql-tag";
 
 import { AuthContext } from "../context/auth";
 import Posts from "../components/Posts";
+import ControlledCarousel from "../components/Carousel";
+
 
 function Home() {
   const { user } = useContext(AuthContext);
@@ -17,14 +19,19 @@ function Home() {
   const homeComponent = user ? (
     <>
       <h1>Hey you're logged in!</h1>
+      <h3>Now you can view our posts.</h3>
+
       <div className="posts-div">
         <Posts posts={ data ? data.getPosts : null} />
       </div>
     </>
   ) : (
     <>
-      <h1>Hey! You're not logged in yet!</h1>
-      <h4>If you're a new user click on register.</h4>
+      <h1>Welcome, you're not logged in yet!</h1>
+      <h4>If you're a new user click on Register.</h4>
+      <div>
+        <ControlledCarousel />
+      </div>
     </>
   );
 

@@ -13,7 +13,7 @@ module.exports.validateUserInput = (
     errors.email = "Email must not be empty";
   } else {
     // Checks for email pattern
-    if (!email.includes("@")) {
+    if (!email.includes("@") || !email.includes(".")) {
       errors.email = "Must be a valid email address";
     }
   }

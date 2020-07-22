@@ -33,14 +33,14 @@ function MenuBar(props) {
 
       <Menu.Menu position="right">
         <Menu.Item
-          name="Log In"
+          name="login"
           active={activeItem === "login"}
           onClick={handleItemClick}
           as={Link}
           to="/login"
         />
         <Menu.Item
-          name="Sign Up"
+          name="register"
           active={activeItem === "register"}
           onClick={handleItemClick}
           as={Link}
