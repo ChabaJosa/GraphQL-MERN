@@ -20,9 +20,11 @@ function Register(props) {
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(proxy, result) {
-      console.log(result);
+      console.log("Here -->",result);
       context.login(result.data.login) // This is the logged in user data
-      props.history.push("/");
+      alert(`Registered succesfully with user: ${result.data.register.username}! \nNow Log in with your new credentials!`)
+      // Semantic UI Modal: https://react.semantic-ui.com/modules/modal/#types-controlled might be a good substitute
+      props.history.push("/login");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -45,7 +47,7 @@ function Register(props) {
           noValidate
           className={loading ? "loading" : ""}
         >
-          <h1>Register</h1>
+          <h1>Sign Up</h1>
           <Form.Input
             label="Username"
             placeholder="Username..."
