@@ -9,12 +9,14 @@ Create a config.js file that looks like the sample-config.js file<br />
 The secret key can be any string.
 
 
-### Step 2: Open Terminals
+### Step 2: Open terminals and start backend
 
 Open 2 separate terminal windows from the project directory.<br />
 In 1 of the 2 terminals, run `npm i`<br />
-and then once you have the node modules, run `npm run serve`<br /><br />
-<!-- <br/> -->
+and then once you have the node modules, run `npm run serve`<br />
+
+### Step 3: Start Frontend
+
 In the other terminal, run `cd frontend`<br />
 Once in the frontend directory run `npm i` <br />
 and then once you have the node modules run `npm start`
