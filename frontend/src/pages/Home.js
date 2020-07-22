@@ -18,7 +18,7 @@ function Home() {
 
   const homeComponent = user ? (
     <>
-      <h1>Hey you're logged in!</h1>
+      <h1>You're logged in! Welcome!</h1>
       <h3>Now you can view our posts.</h3>
 
       <div className="posts-div">

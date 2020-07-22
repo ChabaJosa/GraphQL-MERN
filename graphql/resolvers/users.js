@@ -64,12 +64,13 @@ module.exports = {
     // For: New User
     async register(
       _,
-      { registerInput: { username, email, password, confirmPassword } }
+      { registerInput: { name, username, email, password, confirmPassword } }
     ) {
 
 
       // Adds Validators to check if fields aren't empy, email patterns, etc
       const { valid, errors } = validateUserInput(
+        name,
         username,
         email,
         password,
@@ -83,6 +84,7 @@ module.exports = {
       // Makes Sure User/Email doesn't exist
       const user = await User.findOne({ username });
       const emailCheck = await User.findOne({ email });
+      const nameCheck = await User.findOne({ name });
 
       if (user) {
         throw new UserInputError("Username is taken", {
@@ -96,6 +98,12 @@ module.exports = {
             email: "This email is taken",
           },
         });
+      } else if (nameCheck) {
+        throw new UserInputError("Name is taken", {
+          errors: {
+            email: "This name is taken",
+          },
+        });
       }
 
       // Creates hash pwd of 12 digits
@@ -103,6 +111,7 @@ module.exports = {
 
       // uses the User model to create a new user from the RegisterInput
       const newUser = new User({
+        name: name,
         email: email,
         username: username,
         password: password,

@@ -10,6 +10,7 @@ function Register(props) {
   const context = useContext(AuthContext)
   const [errors, setErrors] = useState({});
   const initialState = {
+    name:"",
     username: "",
     email: "",
     password: "",
@@ -48,6 +49,15 @@ function Register(props) {
           className={loading ? "loading" : ""}
         >
           <h1>Register</h1>
+          <Form.Input
+            label="Name"
+            placeholder="Name..."
+            name="name"
+            type="text"
+            error={errors.name ? true : false}
+            value={values.name}
+            onChange={onChange}
+          />
           <Form.Input
             label="Username"
             placeholder="Username..."
@@ -105,6 +115,7 @@ function Register(props) {
 
 const REGISTER_USER = gql`
   mutation register(
+    $name: String!
     $username: String!
     $email: String!
     $password: String!
@@ -112,6 +123,7 @@ const REGISTER_USER = gql`
   ) {
     register(
       registerInput: {
+        name: $name
         username: $username
         email: $email
         password: $password
@@ -119,6 +131,7 @@ const REGISTER_USER = gql`
       }
     ) {
       id
+      name
       email
       username
       createdAt
