@@ -11,10 +11,11 @@ The secret key can be any string.
 
 ### Step 2: Open Terminals
 
-Open 2 separate terminal windows from the project directory.<br />
+Open 2 separate terminal windows (Preferably GitBash) from the project directory.<br />
 In 1 of the 2 terminals, run `npm run serve`<br />
 In the other terminal, run `cd frontend`<br />
-Once in the frontend directory run `npm start`
+Once in the frontend directory run `npm i` <br />
+and then once you have the node modules run `npm start`
 
 ### That's it!
 
