@@ -12,9 +12,9 @@ function Home() {
   
   const { data } = useQuery(FETCH_POSTS_QUERY);
 
-  // if (data) {
-  //   console.log( data.getPosts);
-  // }
+  if (data) {
+    console.log( data.getPosts);
+  }
 
   const homeComponent = user ? (
     <>

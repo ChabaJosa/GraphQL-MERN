@@ -21,6 +21,10 @@ In the other terminal, run `cd frontend`<br />
 Once in the frontend directory run `npm i` <br />
 and then once you have the node modules run `npm start`
 
+
+### Note: It's important that you start the server first :)
+
+
 ### That's it!
 
 
