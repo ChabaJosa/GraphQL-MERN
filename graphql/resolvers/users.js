@@ -26,6 +26,7 @@ module.exports = {
 
     // Here is where we: Validate user info, make sure user doesn't exist, create hash pwd and an auth token
     // For: Existing User
+    // The empty first argument is the parent, but there's no parent since there's no step before this.
     async login(_, {username, password}){
 
         const { valid, errors } = validateLogInInput(
@@ -125,7 +126,7 @@ module.exports = {
       const token = generateToken(res) 
 
       return {
-        ...res._doc, // Where our doc is stored
+        ...res._doc, // The doc in mongo where our data is stored
         id: res._id,
         token,
       };

@@ -1,5 +1,23 @@
 import React, { useReducer, createContext } from "react";
+import jwtDecode from "jwt-decode"
 
+
+const initialState = {
+  user: null
+}
+
+// Checks for token
+if(localStorage.getItem("jwtToken")){ // Checks if login token is there
+    const decodedToken = jwtDecode(localStorage.getItem("jwtToken"))
+    if(decodedToken.exp * 1000 < Date.now()){
+      localStorage.removeItem("jwtToken")
+    } else {
+        initialState.user = decodedToken
+    }
+}
+
+
+// This is all so our app knows when we are logged in
 const AuthContext = createContext({
   user: null,
   login: (userData) => {},
@@ -24,9 +42,10 @@ function authReducer(state, action) {
 }
 
 function AuthProvider(props) {
-  const [state, dispatch] = useReducer(authReducer, { user: null });
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {
+    localStorage.setItem("jwtToken", userData.token)
     dispatch({
       type: "LOGIN",
       payload: userData,
@@ -34,7 +53,8 @@ function AuthProvider(props) {
   }
 
   function logout() {
-    dispatch({ type: "LOGOUT" }); // No payload because that's how it works
+    localStorage.removeItem("jwtToken")
+    dispatch({ type: "LOGOUT" }); // No payload because that's how logout works
   }
 
   return (

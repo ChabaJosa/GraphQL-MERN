@@ -20,7 +20,8 @@ function Register(props) {
   const { onChange, onSubmit, values } = useForm(registerUser, initialState);
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(proxy, result) {
+    // Trigerred if mutation is succesfully executed, first argument is proxy but we're not using it
+    update(_, result) {
       context.login(result.data.login) // This is the logged in user data
       alert(`Registered succesfully with user: ${result.data.register.username}! \nNow Log in with your new credentials!`)
       // Semantic UI Modal: https://react.semantic-ui.com/modules/modal/#types-controlled might be a good substitute

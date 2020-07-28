@@ -12,15 +12,11 @@
   "dependencies": {
     "apollo-server": "^2.16.0",
     "bcryptjs": "^2.4.3",
-    "bootstrap": "^4.5.0",
     "colors": "^1.4.0",
     "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.25",
-    "react-bootstrap": "^1.2.2",
-    "react-router-dom": "^5.2.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "jwt-decode": "^2.2.0",
+    "mongoose": "^5.9.25"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
